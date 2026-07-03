@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
+});
+
+// 疎通確認の仮ルート
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', fn() => '管理画面（準備中）');
 });
