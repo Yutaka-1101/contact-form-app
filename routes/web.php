@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,8 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-// 疎通確認の仮ルート
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', fn() => '管理画面（準備中）');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/contacts/{contact}', [AdminController::class, 'show'])->name('admin.show');
+    Route::delete('/admin/contacts/{contact}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
