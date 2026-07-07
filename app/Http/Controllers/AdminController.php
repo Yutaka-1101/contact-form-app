@@ -6,7 +6,6 @@ use App\Models\Contact;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\IndexContactRequest;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
