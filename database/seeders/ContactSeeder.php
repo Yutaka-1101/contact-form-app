@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 use App\Models\Contact;
 use App\Models\Category;
 use App\Models\Tag;
-use Faker\Factory as Faker;
 
 class ContactSeeder extends Seeder
 {

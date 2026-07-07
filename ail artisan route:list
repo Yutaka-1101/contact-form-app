@@ -1,0 +1,21 @@
+[1mdiff --git a/routes/web.php b/routes/web.php[m
+[1mindex 3df3f4a..9353404 100644[m
+[1m--- a/routes/web.php[m
+[1m+++ b/routes/web.php[m
+[36m@@ -16,15 +16,11 @@[m
+ |[m
+ */[m
+ [m
+[31m-Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');[m
+[32m+[m[32mRoute::get('/', [ContactController::class, 'index'])->name('contact.index');[m
+ Route::post('/contacts/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');[m
+ Route::post('/contacts', [ContactController::class, 'store'])->name('contact.store');[m
+ Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');[m
+ [m
+[31m-Route::get('/', function () {[m
+[31m-    return redirect('/login');[m
+[31m-});[m
+[31m-[m
+ Route::middleware('auth')->group(function () {[m
+     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');[m
+     Route::get('/admin/contacts/{contact}', [AdminController::class, 'show'])->name('admin.show');[m

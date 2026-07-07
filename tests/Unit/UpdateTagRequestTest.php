@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateTagRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Tests\TestCase;
 
 class UpdateTagRequestTest extends TestCase
