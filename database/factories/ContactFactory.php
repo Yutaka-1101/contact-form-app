@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Faker\Factory as Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Contact>
@@ -26,6 +26,7 @@ class ContactFactory extends Factory
             'address' => fake()->address,
             'building' => fake()->optional()->secondaryAddress,
             'detail' => fake()->realText(100),
+            'category_id' => Category::factory(),
         ];
     }
 }
