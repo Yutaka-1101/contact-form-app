@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Http\Requests\IndexContactRequest;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,9 +13,26 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(IndexContactRequest $request)
     {
-        $contacts = Contact::with(['category', 'tags'])->paginate(7);
+        $query = Contact::with(['category', 'tags']);
+        if ($request->keyword) {
+            $query->where(function ($q) use ($request) {
+                $q->where('first_name', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('last_name', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('email', 'like', '%' . $request->keyword . '%');
+            });
+        }
+        if ($request->gender) {
+            $query->where('gender', $request->gender);
+        }
+        if ($request->category_id) {
+            $query->where('category_id', $request->category_id);
+        }
+        if ($request->date) {
+            $query->whereDate('created_at', $request->date);
+        }
+        $contacts = $query->paginate(7);
         $categories = Category::all();
         $tags = Tag::all();
         return view('admin.index', compact('contacts', 'categories', 'tags'));
