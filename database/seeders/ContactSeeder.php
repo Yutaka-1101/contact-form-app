@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\Contact;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Tag;
+use Illuminate\Database\Seeder;
 
 class ContactSeeder extends Seeder
 {

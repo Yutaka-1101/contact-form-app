@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
-use App\Models\Category;
-use App\Models\Tag;
 use App\Http\Requests\IndexContactRequest;
+use App\Models\Category;
+use App\Models\Contact;
+use App\Models\Tag;
 
 class AdminController extends Controller
 {
@@ -17,9 +17,9 @@ class AdminController extends Controller
         $query = Contact::with(['category', 'tags']);
         if ($request->keyword) {
             $query->where(function ($q) use ($request) {
-                $q->where('first_name', 'like', '%' . $request->keyword . '%')
-                    ->orWhere('last_name', 'like', '%' . $request->keyword . '%')
-                    ->orWhere('email', 'like', '%' . $request->keyword . '%');
+                $q->where('first_name', 'like', '%'.$request->keyword.'%')
+                    ->orWhere('last_name', 'like', '%'.$request->keyword.'%')
+                    ->orWhere('email', 'like', '%'.$request->keyword.'%');
             });
         }
         if ($request->gender) {
@@ -34,6 +34,7 @@ class AdminController extends Controller
         $contacts = $query->paginate(7);
         $categories = Category::all();
         $tags = Tag::all();
+
         return view('admin.index', compact('contacts', 'categories', 'tags'));
     }
 
@@ -43,6 +44,7 @@ class AdminController extends Controller
     public function show(Contact $contact)
     {
         $contact->load(['category', 'tags']);
+
         return view('admin.show', compact('contact'));
     }
 
@@ -52,6 +54,7 @@ class AdminController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
+
         return redirect()->route('admin.index');
     }
 }

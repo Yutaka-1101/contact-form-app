@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Tag;
-use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -13,7 +13,6 @@ class TagTest extends TestCase
     /**
      * A basic unit test example.
      */
-
     use RefreshDatabase;
 
     /** @test */
@@ -22,7 +21,7 @@ class TagTest extends TestCase
         $category = Category::factory()->create();
         $tag = Tag::factory()->create();
         $contact = Contact::factory()->count(2)->create([
-            'category_id' => $category->id
+            'category_id' => $category->id,
         ]);
 
         $tag->contacts()->sync($contact->pluck('id'));

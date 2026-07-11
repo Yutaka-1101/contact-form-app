@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -14,7 +14,6 @@ class AdminControllerTest extends TestCase
     /**
      * A basic feature test example.
      */
-
     use RefreshDatabase;
 
     /** @test */
@@ -86,10 +85,10 @@ class AdminControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $category1 = Category::factory()->create([
-            'content' => 'カテゴリA'
+            'content' => 'カテゴリA',
         ]);
         $category2 = Category::factory()->create([
-            'content' => 'カテゴリB'
+            'content' => 'カテゴリB',
         ]);
 
         Contact::factory()->create([

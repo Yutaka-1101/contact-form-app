@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
+use App\Models\Tag;
 
 class TagController extends Controller
 {
@@ -15,6 +15,7 @@ class TagController extends Controller
     {
         $validated = $request->validated();
         Tag::create($validated);
+
         return redirect()->route('admin.index');
     }
 
@@ -33,6 +34,7 @@ class TagController extends Controller
     {
         $validated = $request->validated();
         $tag->update($validated);
+
         return redirect()->route('admin.index');
     }
 
@@ -42,6 +44,7 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
+
         return redirect()->route('admin.index');
     }
 }

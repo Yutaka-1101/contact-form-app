@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -12,7 +12,6 @@ class TagControllerTest extends TestCase
     /**
      * A basic feature test example.
      */
-
     use RefreshDatabase;
 
     /** @test */
@@ -33,12 +32,12 @@ class TagControllerTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post(route('tags.store'), [
-            'name' => 'テストタグ'
+            'name' => 'テストタグ',
         ]);
 
         $response->assertRedirect(route('admin.index'));
         $this->assertDatabaseHas('tags', [
-            'name' => 'テストタグ'
+            'name' => 'テストタグ',
         ]);
     }
 
@@ -47,16 +46,16 @@ class TagControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $tag = Tag::factory()->create([
-            'name' => 'テストタグ'
+            'name' => 'テストタグ',
         ]);
 
         $response = $this->actingAs($user)->put(route('tags.update', $tag), [
-            'name' => '更新タグ'
+            'name' => '更新タグ',
         ]);
 
         $response->assertRedirect(route('admin.index'));
         $this->assertDatabaseHas('tags', [
-            'name' => '更新タグ'
+            'name' => '更新タグ',
         ]);
     }
 
@@ -70,7 +69,7 @@ class TagControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.index'));
         $this->assertDatabaseMissing('tags', [
-            'id' => $tag->id
+            'id' => $tag->id,
         ]);
     }
 

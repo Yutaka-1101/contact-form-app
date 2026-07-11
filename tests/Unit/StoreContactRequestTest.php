@@ -2,27 +2,28 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Http\Requests\StoreContactRequest;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
 class StoreContactRequestTest extends TestCase
 {
     /**
      * Summary of test_example
+     *
      * @return void
      */
-
     use RefreshDatabase;
+
     /** @test */
     public function 全ての必須項目とタグ入力が有効ならバリデーションを通る(): void
     {
         $category = Category::factory()->create();
         $tag = Tag::factory()->create();
-        $request = new StoreContactRequest();
+        $request = new StoreContactRequest;
 
         $validator = Validator::make([
             'first_name' => '太郎',
@@ -44,7 +45,7 @@ class StoreContactRequestTest extends TestCase
     {
         $category = Category::factory()->create();
         $tag = Tag::factory()->create();
-        $request = new StoreContactRequest();
+        $request = new StoreContactRequest;
 
         $validator = Validator::make([
             'first_name' => '太郎',

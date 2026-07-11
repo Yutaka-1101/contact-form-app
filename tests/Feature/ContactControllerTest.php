@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Category;
-use App\Models\Tag;
 use App\Models\Contact;
+use App\Models\Tag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -19,10 +19,10 @@ class ContactControllerTest extends TestCase
     public function お問い合わせフォーム入力ページが表示される(): void
     {
         Category::factory()->create([
-            'content' => 'カテゴリ1'
+            'content' => 'カテゴリ1',
         ]);
         Tag::factory()->create([
-            'name' => 'タグ1'
+            'name' => 'タグ1',
         ]);
         $response = $this->get(route('contact.index'));
 
@@ -109,7 +109,7 @@ class ContactControllerTest extends TestCase
 
         $response->assertRedirect(route('contact.thanks'));
         $this->assertDatabaseHas('contacts', [
-            'email' => 'test@example.com'
+            'email' => 'test@example.com',
         ]);
 
         $contact = Contact::where('email', 'test@example.com')->first();
@@ -142,6 +142,4 @@ class ContactControllerTest extends TestCase
         $response->assertRedirect();
         $response->assertSessionHasErrors();
     }
-
-
 }
