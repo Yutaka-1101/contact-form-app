@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/contacts/{contact}', [AdminController::class, 'show'])->name('admin.show');
     Route::delete('/admin/contacts/{contact}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::get('/contacts/export', [ContactController::class, 'export']);
     Route::resource('admin/tags', TagController::class)
         ->only(['store', 'edit', 'update', 'destroy']);
 });
